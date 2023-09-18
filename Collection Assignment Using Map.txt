@@ -1,0 +1,363 @@
+Collection Assignment Q1.
+
+package c1;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+
+	HashMap<Integer, String> courseMap = new HashMap<>();
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		Main m = new Main();
+		
+		while(true) {
+			
+			System.out.println("Enter 1 to display\n");
+			System.out.println("Enter 2 to insert key and value\n");
+			int x = sc.nextInt();
+		    if (x == 1) {
+		    	m.display();
+		    
+		    }
+		    else if (x == 2) {
+		     m.insert();
+		    }
+		    else {
+		    	System.out.println("Invalid Input \n");
+		    	break;
+		    }
+		}
+		}
+		public void display() 
+		{
+			
+			for (Map.Entry<Integer, String> mp : courseMap.entrySet()) {
+
+				System.out.println("\n" + mp.getKey() + " " + mp.getValue());
+			
+		}
+		
+		}	
+      public void insert() 
+      
+      {
+    	  Scanner sc = new Scanner(System.in);
+    	  System.out.println("Insert Key");
+
+  		int k = Integer.parseInt(sc.nextLine());
+
+  		System.out.println("Insert Value");
+
+  		String v = sc.nextLine();
+  		
+  		courseMap.put(k, v);
+      }
+
+}
+
+
+Q2.
+
+package a1;
+
+import java.lang.object;
+
+public class Account {
+
+	
+    private int accountNumber;
+    private String accountHolderName;
+    private int balance;
+    private String location;
+    
+    public Account() {
+		super();
+    }
+    public Account(int accountNumber, String accountHolderName, int balance, String location) {
+        this.accountNumber = accountNumber;
+        this.accountHolderName = accountHolderName;
+        this.balance = balance;
+        this.location = location;
+    }
+
+   
+
+    public int getAccountNumber() {
+		return accountNumber;
+	}
+
+ 
+
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	public String getAccountHolderName() {
+		return accountHolderName;
+	}
+
+ 
+
+	public void setAccountHolderName(String accountHolderName) {
+		this.accountHolderName = accountHolderName;
+	}
+
+	public int getBalance() {
+		return balance;
+	}
+
+ 
+
+	public void setBalance(int balance) {
+		this.balance = balance;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+ 
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	@Override
+	public int hashCode() {
+		return this.accountNumber*8+this.balance*100/2;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		Account a=new Account();
+		if(obj instanceof Account) {
+			boolean b1=this.accountHolderName.equals(a.getAccountHolderName());
+			boolean b2=this.balance==a.getBalance();
+			boolean b3=this.location.equals(a.getLocation());
+			boolean b4=this.accountNumber==a.getAccountNumber();
+
+			return b1&&b2&&b3&&b4;
+		}
+		return false;
+	}
+	public void addAccountToMap() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void getAllAccountsBasedOnLocation() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void getAccountBasedOnBalanceRange() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
+
+package a1;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+	
+	Scanner sc = new Scanner(System.in);
+	Map<Integer, Account> accountMap = new HashMap<>();
+	 
+	public static void main(String[] args) 
+	{
+        Account app = new Account();
+        
+        while (true)
+        {
+        	  
+        	  System.out.println(" -----OPERATIONS-----");
+        	  System.out.println("1. Insert Account number to add");
+        	  System.out.println("2. All Accounts Based on Location");
+        	  System.out.println("3. All Accounts Based on Salary Range");
+        	  System.out.println("4. Account Based on Account Number");
+        	  System.out.println("0. Exit");
+        	  System.out.println(" Enter option : ");
+      
+        	  switch (new Scanner(System.in).nextInt()) {
+        	  
+        	  case 1:
+  				app.addAccountToMap();
+  				break;
+
+   
+
+  			case 2:
+  				app.getAllAccountsBasedOnLocation();
+  				break;
+
+   
+
+  			case 3:
+  				app.getAccountBasedOnBalanceRange();
+  				break;
+
+   
+
+  			case 4:
+  				app.getAccountNumber();
+  				break;
+
+   
+
+  			case 0:
+  				System.out.println("ProcessEnded");
+  				System.exit(0);
+  			}
+
+  		}
+
+  	}
+        
+	private void getAccountBasedOnAccountNumber() {
+		System.out.print("Enter AccountNumber to be Searched: ");
+		int accountNumber=sc.nextInt();
+		Map<Integer, Account> map;
+		for(Map.Entry<Integer, Account> entry : map.entrySet()) {
+			int key=entry.getKey();
+			Account a=entry.getValue();
+			
+			if(a.getAccountNumber()==accountNumber) 
+			{
+				displayAccounts(a);
+			}
+
+		}
+	}
+
+
+	private void getAccountBasedOnBalanceRange() {
+		System.out.print("Enter Minimum Amount: ");
+		int r1=sc.nextInt();
+		System.out.print("Enter Minimum Amount: ");
+		int r2=sc.nextInt();
+
+ 
+
+		Map<Integer, Account> map;
+		for(Map.Entry<Integer, Account> entry: map.entrySet()) 
+		{
+			int key=entry.getKey();
+			Account a=entry.getValue();
+			
+			if(a.getBalance()>=r1 && a.getBalance()<=r2) 
+			{
+				displayAccounts(a);
+			}
+			else {
+				System.out.println("Account number not found");
+			}
+		}
+		}
+			private void getAllAccountsBasedOnLocation() {
+				System.out.print("Enter Location to be Searched: ");
+				String location=sc.next();
+				Map<Integer, Account> map;
+				for(Map.Entry<Integer, Account> entry: map.entrySet()) {
+					int key=entry.getKey();
+					Account a=entry.getValue();
+					if(a.getLocation().equals(location)) {
+						displayAccounts(a);
+				}
+	}
+
+}
+			private void addAccountToMap() {
+				int accountNumber=new Random().nextInt(1000000);
+
+				System.out.print("Enter Account Holder Name: ");
+				String name=sc.next();
+
+				System.out.print("Enter Balance: ");
+				int balance=sc.nextInt();
+
+				System.out.print("Enter Location: ");
+				String location=sc.next();
+
+				Account a=new Account(accountNumber,name,balance,location);
+				map.put(a.getAccountNumber(), a);
+			}
+
+
+			private void displayAccounts(Account a) {
+				System.out.println("Account Number = " + a.getAccountNumber() + ", Account Holder Name = " + a.getAccountHolderName() + ", Balance = "
+						+ a.getBalance() + ", Location = " + a.getLocation());
+
+			}
+
+		 
+
+		}
+
+
+Q3.
+
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MainClass {
+	
+	public static void main(String[] args) {
+		
+	}
+
+	Account a1 = new Account(1, "A", 1000, "Mumbai");
+    Account a2 = new Account(2, "B", 5000, "chennai");
+    Account a3 = new Account(3, "C", 4000, "Pune");
+    Account a4 = new Account(4, "D", 6000, "Mumbai");
+    Account a5 = new Account(5, "E", 3000, "Bangalore");
+
+Map<Integer,Account> accountMap = new HashMap<>();
+
+	  
+
+     accountMap.put(a1.getAccountNumber(), a1);
+     accountMap.put(a2.getAccountNumber(), a2);
+     accountMap.put(a3.getAccountNumber(), a3);
+     accountMap.put(a4.getAccountNumber(), a4);
+     accountMap.put(a5.getAccountNumber(), a5);
+
+    Scanner sc = new Scanner(System.in);
+    
+    System.out.println("please enter key to get account info");
+    int key = sc.nextInt();
+    Account acc = accountMap.get(key);
+
+	 System.out.println("");
+
+	 System.out.println("please enter location to get account info");
+         String loc = sc.next();
+
+	  
+
+	  Map<String, List<Account>> locAccount = new HashMap<>();
+
+	  List<Account> accountList = new ArrayList<>();{
+
+	  for(Map.Entry<Integer, Account> accMap : accountMap.entrySet()) {
+
+		  if(accMap.getValue().getLocation().equals(loc))
+		  {
+                            accountList.add(accMap.getValue());
+            }
+
+	  }
+           locAccount.put(loc, accountList);
+           System.out.println(locAccount);
+
+	  }
+}
